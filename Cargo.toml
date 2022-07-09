@@ -1,0 +1,15 @@
+[package]
+name = "pry"
+description = "A cross platform tool to extract any compressed archive."
+documentation = "https://github.com/LyonSyonII/pry-rs"
+repository = "https://github.com/LyonSyonII/pry-rs"
+keywords = ["extract", "rar", "7zip", "archive", "pry"]
+readme = "README.md"
+license = "MIT OR Apache-2.0"
+version = "0.1.0"
+authors = ["Liam G <liam.garriga@tutanota.com>"]
+
+[dependencies]
+clap = { version = "3.2.8", features = ["derive"] }
+read_pipe = "0.1.2"
+unrar = "0.4.4"
