@@ -4,7 +4,12 @@ use std::path::PathBuf;
 
 #[derive(clap::Parser, Debug)]
 pub struct Cli {
+    /// Files that will be extracted
     pub files: Vec<PathBuf>,
+    /// Where those files will be extracted.
+    /// 
+    /// If not specified, it defaults to a new directory with the name of the file that will be extracted.
+    pub extract_to: Option<String>,
 }
 
 impl Cli {
@@ -37,6 +42,14 @@ impl Cli {
                 )
                 .exit()
             });
+
+            if path.is_dir() {
+                cmd.error(
+                    ErrorKind::ValueValidation,
+                    format_args!("\"{}\" is a directory, it cannot be extracted.", path.display()),
+                )
+                .exit()
+            }
         }
 
         cli
