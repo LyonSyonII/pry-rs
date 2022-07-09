@@ -1,6 +1,6 @@
 [package]
 name = "pry"
-description = "A cross platform tool to extract any compressed archive."
+description = "Cross platform tool to extract any compressed archive."
 documentation = "https://github.com/LyonSyonII/pry-rs"
 repository = "https://github.com/LyonSyonII/pry-rs"
 keywords = ["extract", "rar", "7zip", "archive", "pry"]
