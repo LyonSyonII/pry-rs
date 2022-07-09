@@ -1,6 +1,5 @@
 mod structs;
-use structs::Cli;
 
 fn main() {
-    println!("Hello, world!");
+    let cli = structs::Cli::read();
 }

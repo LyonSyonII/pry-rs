@@ -1,4 +1,4 @@
-use clap::Parser;
+use clap::{CommandFactory, ErrorKind, Parser};
 use std::path::PathBuf;
 
 
@@ -8,10 +8,18 @@ pub struct Cli {
 }
 
 impl Cli {
-    fn read() -> Cli {
+    pub fn read() -> Cli {
         let cli = Cli::parse();
-        if cli.files.is_empty() {
-
+        // Add piped contents to parse results
+        if let Some(read) = read_pipe::read_pipe_split_whitespace() {
+            cli.files.extend(read.into_iter().map(|s| PathBuf::from(s)))
         }
+
+        if cli.files.is_empty() {
+            let cmd = Cli::command();
+            cmd.error(ErrorKind::MissingRequiredArgument, "<FILES> is required").exit();
+        }
+
+        cli
     }
 }
